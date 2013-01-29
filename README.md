@@ -8,7 +8,7 @@ making patients healthy faster and with less medication.
 
 # Installation
 
-The project uses [Meteor][http://meteor.com/] framework, so you'll need to install it first.
+The project uses excellent [Meteor framework](http://meteor.com), so you'll need to install it first.
 
 After installation, issuing ```meteor``` will run the project locally.
 
