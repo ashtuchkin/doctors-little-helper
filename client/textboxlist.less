@@ -1,0 +1,160 @@
+
+// Border Radius
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+     -moz-transition: @transition;
+      -ms-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+
+@grayDark:  #333;
+@grayLight:             #999;
+
+
+
+/* Common Textboxlist CSS */
+.textboxlist {
+    /* we style it like an input */
+    border: 1px solid #ccc;
+    .border-radius(3px);
+    @transition: border linear .2s, box-shadow linear .2s;
+    .transition(@transition);
+    .box-shadow(inset 0 1px 3px rgba(0,0,0,.1));
+    cursor: text;
+    padding: 1px;
+
+    &.textboxlist-focus {
+        outline: 0;
+        border-color: rgba(82,168,236,.8);
+        @shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
+        .box-shadow(@shadow);
+    }
+
+    .textboxlist-bits { /* ul */
+        overflow: hidden;
+        margin: 0;
+
+        .textboxlist-bit { /* li */ 
+            display: block; float: left;
+             
+            &.textboxlist-bit-editable { 
+                .textboxlist-bit-editable-input { /* input */
+                    /* Clear input styling */
+                    .border-radius(none);
+                    .transition(none);
+                    .box-shadow(none);
+                    border: 0;
+                    height: 22px;
+                    line-height: 22px;
+                    margin: 0; padding: 1px 3px;
+                    vertical-align: baseline;
+                     
+                    &:focus { outline: 0; }
+                }
+            }
+
+            &.textboxlist-bit-box { 
+                position: relative;
+                line-height: 18px;
+                padding: 0 5px; margin: 2px 2px;
+                .border-radius(3px);
+                border: 1px solid rgba(82,168,236,.4); //#CAD8F3;
+                background: rgba(82,168,236,.2); //#DEE7F8;
+                cursor: default;
+
+                &.textboxlist-bit-box-deletable {
+                    padding-right: 15px;
+                     
+                    .textboxlist-bit-box-deletebutton { 
+                        position: absolute;
+                        right: 4px; top: 6px;
+                        display: block;
+                        width: 7px; height: 7px;
+                        font-size: 1px;
+                        background: url(data:image/gif;base64,R0lGODlhBwAVAJEAAPz8/JOdsmx0hP///yH5BAEHAAMALAAAAAAHABUAAAIrXIYXa7yP2klPOReniFv44XXhhoTcCH4mCSJA9ALyIMf16855Tc88ThsUAAA7);
+
+                        &:hover { 
+                            border: none;
+                            background-position: 7px;
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                &.textboxlist-bit-box-hover { 
+                    background: rgba(82,168,236,.6); //#BBCEF1; 
+                    border: 1px solid rgba(82,168,236,.8); //#6D95E0; 
+                }
+
+                &.textboxlist-bit-box-focus { 
+                    border-color: rgba(82,168,236,1); //#598BEC; 
+                    background: rgba(82,168,236,.8); //#598BEC; 
+                    color: #fff; 
+                    .textboxlist-bit-box-deletebutton { 
+                        background-position: bottom; 
+                    }
+                }
+            }
+        }
+    }
+}
+
+.textboxlist-autocomplete { 
+    position: absolute;
+    z-index: 10; // Due to a Chrome bug http://code.google.com/p/chromium/issues/detail?id=98851, should be fixed later.
+     
+    .textboxlist-autocomplete-placeholder, .textboxlist-autocomplete-results {
+        /* Common styles here */
+        margin: 4px -2px;
+
+        background: white;
+        border: 1px solid #999; 
+        .border-radius(5px);
+        .box-shadow(0 5px 10px rgba(0,0,0,.2));
+        display: none; 
+    }
+
+    .textboxlist-autocomplete-placeholder {
+        padding: 5px 7px;
+        font-size: 80%;
+        background: #F5F5F5;
+        color: #999;
+    }
+
+    .textboxlist-autocomplete-results { /* ul */
+        .textboxlist-autocomplete-result { /* li */
+            padding: 5px 7px;
+
+            &.textboxlist-autocomplete-result-focus { 
+                background: rgba(82,168,236,.4); //#C6D9E4; 
+            }
+             
+            .textboxlist-autocomplete-highlight { /* span inside */ 
+                background: @grayDark; //#EEF0C4; 
+                font-weight: bold; 
+            }
+        }
+    }
+}
+
+.textboxlist-placeholder {
+    position: absolute;
+    margin-left: 3px;
+    margin-top: 1px;
+    color: @grayLight;
+}

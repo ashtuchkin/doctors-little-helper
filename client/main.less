@@ -1,0 +1,46 @@
+/* CSS declarations go here */
+
+
+// Border Radius
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+     -moz-transition: @transition;
+      -ms-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+
+@grayDark:  #333;
+@grayLight:             #999;
+
+
+ul.related-symptoms {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    li {
+        display: block; 
+        float: left;
+        line-height: 18px;
+        padding: 0 5px; margin: 2px 2px;
+        .border-radius(3px);
+        border: 1px solid rgba(82,168,236,.4); //#CAD8F3;
+        background: rgba(82,168,236,.2); //#DEE7F8;
+        cursor: pointer;
+    }
+}
+

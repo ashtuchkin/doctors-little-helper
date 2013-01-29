@@ -1,0 +1,104 @@
+<head>
+    <title>Doctor's Little Helper</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row header">
+            <div class="span6">
+                <h3>
+                    <img src="/img/doctor.png" style="height: 32px; width: 32px;">
+                    Doctor's little helper
+                </h3>
+            </div>
+            <div class="span6">
+                <div class="pull-right well well-small">
+                    {{loginButtons align="right"}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span3">
+                <div class="well" style="padding: 8px 0">
+                    <ul class="nav nav-list">
+                        {{> nav}}
+                    </ul>
+                </div>
+            </div>
+            <div class="span9">
+                {{renderPage}}
+            </div>
+        </div>
+    </div>
+</body>
+
+<template name="nav">
+    <li class="{{#if isActive 'home'}}active{{/if}}"><a href="/"><i class="icon-home"></i>Home</a></li>
+    <li class="{{#if isActive 'suggest'}}active{{/if}}"><a href="/suggest"><i class="icon-pencil"></i>Suggest diagnosis</a></li>
+    <li class="{{#if isActive 'patients'}}active{{/if}}"><a href="/patients"><i class="icon-user"></i>Patients</a></li>
+    <li class="divider"></li>
+    <li class="{{#if isActive 'library'}}active{{/if}}"><a href="/library"><i class="icon-book"></i>Library</a></li>
+</template>
+
+<template name="home">
+  <h1>Welcome</h1>
+  Please proceed to <a href="/suggest">symptom suggestion page</a>.
+</template>
+
+<template name="suggest">
+  {{#if showDiseaseDialog}}
+    {{> diseaseDialog}}
+  {{/if}}
+
+  <h4>Please enter the symptoms:</h4>
+  {{#constant}}
+  <input placeholder="Example: cough, fever, backpain" class="symptoms-input">
+  {{/constant}}
+  <br>
+  <h4>Add related symptoms:</h4>
+  <ul class="related-symptoms">
+    {{#each relatedTags}}
+        <li class="reltag">{{this}}</li>
+    {{/each}}
+  </ul>
+
+  <br>
+  <h4>Possible diseases:</h4>
+  {{#if suggestedDiseases}}
+  <table class="table table-hover">
+    {{#each suggestedDiseases}}
+        <tr class="diseaseRow" data-name="{{name}}" style="cursor: pointer">
+            <td style="width: 50px">{{probability}}%</td>
+            <td>{{name}}</td>
+        </tr>
+    {{/each}}
+  </table>
+  {{else}}
+  <div class="alert">
+    Need more information
+  </div>
+  {{/if}}
+
+</template>
+
+<template name="diseaseDialog">
+<div class="modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>{{diseaseName}} description</h3>
+  </div>
+  <iframe src="http://m.wikipedia.org/wiki/{{diseaseName}}" style="width: 100%; height: 500px; margin: 0; padding: 0; border: 0;"></iframe>
+</div>
+</template>
+
+<template name="patients">
+  <h1>Patients</h1>
+</template>
+
+<template name="library">
+  <h1>Library</h1>
+</template>
+
+
+
+
